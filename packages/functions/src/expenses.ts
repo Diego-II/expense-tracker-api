@@ -75,7 +75,7 @@ export const handler: Handler = async (event) => {
     ].join(',') + '\n';
 
     // Get existing content and append new row
-    const existingContent = await getExistingContent(Resource.MyBucket.name, csvKey);
+    const existingContent = await getExistingContent(Resource.ExpenseTrackerBucket.name, csvKey);
     const newContent = existingContent 
       ? existingContent + csvRow
       : 'Amount,Merchant,Name,Card,Timestamp\n' + csvRow;
@@ -83,7 +83,7 @@ export const handler: Handler = async (event) => {
     // Save to S3
     await s3Client.send(
       new PutObjectCommand({
-        Bucket: Resource.MyBucket.name,
+        Bucket: Resource.ExpenseTrackerBucket.name,
         Key: csvKey,
         Body: newContent,
         ContentType: "text/csv",

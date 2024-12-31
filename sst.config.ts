@@ -13,9 +13,9 @@ export default $config({
     const api = await import("./infra/api");
 
     return {
-      expensesApi: api.expensesApi.url,
-      bucket,
-      expensesTable,
+      ExpensesApi: api.expensesApi.url,
+      ExpenseTrackerBucket: bucket.name,
+      ExpensesTable: expensesTable.name,
     };
   },
 });

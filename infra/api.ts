@@ -1,8 +1,7 @@
 import { bucket, expensesTable } from "./storage";
-import { domain } from "./domain";
 
 const expensesApi = new sst.aws.ApiGatewayV2("ExpensesApi", {
-  domain: domain.name,
+  domain: "expense-tracker-api.diego-ii.com",
   transform: {
     route: {
       handler: (args, opts) => {

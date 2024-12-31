@@ -6,18 +6,17 @@ import "sst"
 export {}
 declare module "sst" {
   export interface Resource {
-    "ExpensesApi": {
+    "ExpenseTrackerBucket": {
       "name": string
-      "type": "sst.aws.Function"
+      "type": "sst.aws.Bucket"
+    }
+    "ExpensesApi": {
+      "type": "sst.aws.ApiGatewayV2"
       "url": string
     }
     "ExpensesTable": {
       "name": string
       "type": "sst.aws.Dynamo"
-    }
-    "MyBucket": {
-      "name": string
-      "type": "sst.aws.Bucket"
     }
   }
 }
