@@ -13,9 +13,7 @@ export default $config({
     const api = await import("./infra/api");
 
     return {
-      api: api.myApi.url,
       expensesApi: api.expensesApi.url,
-      domain: domain.name,
       bucket,
       expensesTable,
     };

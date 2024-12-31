@@ -1,4 +1,4 @@
-export const bucket = new sst.aws.Bucket("MyBucket");
+export const bucket = new sst.aws.Bucket("ExpenseTrackerBucket");
 
 export const expensesTable = new sst.aws.Dynamo("ExpensesTable", {
   fields: {

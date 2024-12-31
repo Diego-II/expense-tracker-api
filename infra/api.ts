@@ -1,7 +1,7 @@
 import { bucket, expensesTable } from "./storage";
 import { domain } from "./domain";
 
-export const expensesApi = new sst.aws.ApiGatewayV2("ExpensesApi", {
+const expensesApi = new sst.aws.ApiGatewayV2("ExpensesApi", {
   domain: domain.name,
   transform: {
     route: {
@@ -13,14 +13,6 @@ export const expensesApi = new sst.aws.ApiGatewayV2("ExpensesApi", {
       },
     }
   }
-  // routes: {
-  //   "POST /expenses": {
-  //     function: {
-  //       handler: "packages/functions/src/expenses.handler",
-  //       bind: [bucket, expensesTable],
-  //     }
-  //   }
-  // }
 })
 
 expensesApi.route(
@@ -38,3 +30,5 @@ expensesApi.route(
     link: [bucket],
   }
 )
+
+export { expensesApi }
