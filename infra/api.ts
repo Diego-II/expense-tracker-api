@@ -1,7 +1,40 @@
-import { bucket } from "./storage";
+import { bucket, expensesTable } from "./storage";
+import { domain } from "./domain";
 
-export const myApi = new sst.aws.Function("MyApi", {
-  url: true,
-  link: [bucket],
-  handler: "packages/functions/src/api.handler"
-});
+export const expensesApi = new sst.aws.ApiGatewayV2("ExpensesApi", {
+  domain: domain.name,
+  transform: {
+    route: {
+      handler: (args, opts) => {
+        args.runtime ??= "nodejs22.x"
+        args.logging ??= {
+          retention: "1 month",
+        }
+      },
+    }
+  }
+  // routes: {
+  //   "POST /expenses": {
+  //     function: {
+  //       handler: "packages/functions/src/expenses.handler",
+  //       bind: [bucket, expensesTable],
+  //     }
+  //   }
+  // }
+})
+
+expensesApi.route(
+  "POST /expenses",
+  {
+    handler: "packages/functions/src/expenses.handler",
+    link: [bucket, expensesTable],
+  }
+)
+
+expensesApi.route(
+  "GET /health",
+  {
+    handler: "packages/functions/src/api.handler",
+    link: [bucket],
+  }
+)

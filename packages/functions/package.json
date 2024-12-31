@@ -1,11 +1,16 @@
 {
-  "name": "@monorepo-template/functions",
+  "name": "@expense-tracker-api/functions",
   "version": "0.0.0",
   "dependencies": {
-    "@monorepo-template/core": "*",
+    "@expense-tracker-api/core": "*",
+    "@aws-sdk/client-s3": "^3.0.0",
+    "@aws-sdk/client-dynamodb": "^3.0.0",
+    "@aws-sdk/lib-dynamodb": "^3.0.0",
+    "uuid": "^9.0.0",
     "sst": "*"
   },
   "devDependencies": {
-    "@types/aws-lambda": "^8.10.137"
+    "@types/aws-lambda": "^8.10.137",
+    "@types/uuid": "^9.0.0"
   }
 }

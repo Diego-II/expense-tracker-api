@@ -1,8 +1,8 @@
 {
-  "name": "@monorepo-template/scripts",
+  "name": "@expense-tracker-api/scripts",
   "version": "0.0.0",
   "dependencies": {
-    "@monorepo-template/core": "*",
+    "@expense-tracker-api/core": "*",
     "sst": "*"
   },
   "scripts": {

@@ -1,14 +1,8 @@
 {
-  "name": "@monorepo-template/core",
+  "name": "@expense-tracker-api/core",
   "version": "0.0.0",
   "scripts": {
     "test": "sst shell vitest"
-  },
-  "exports": {
-    "./*": [
-      "./src/*/index.ts",
-      "./src/*.ts"
-    ]
   },
   "dependencies": {
     "sst": "*"
