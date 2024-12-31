@@ -1,75 +1,70 @@
-# Monorepo Template
+# Expense Tracker API
 
-A template to create a monorepo SST ❍ Ion project.
+A serverless API built with SST ❍ Ion for tracking expenses. The API stores expense data in both CSV format (S3) and DynamoDB for flexible querying and reporting.
 
-## Get started
+## Features
 
-1. Use this template to [create your own repo](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
+- Store expenses with amount, merchant, name, and optional card details
+- Automatic organization of expenses by year/month in CSV files
+- DynamoDB storage with efficient querying capabilities
+- Serverless architecture using AWS Lambda and API Gateway
 
-2. Clone the new repo.
+## API Endpoints
 
-   ```bash
-   git clone MY_APP
-   cd MY_APP
-   ```
+### POST /expenses
 
-3. Rename the files in the project to the name of your app. 
+Creates a new expense entry. Example request:
+```json
+{
+"amount": 42.99,
+"merchant": "Amazon",
+"name": "Office Supplies",
+"card": "Business Visa"
+}```
 
-   ```bash
-   npx replace-in-file '/expense-tracker-api/g' MY_APP **/*.* --verbose
-   ```
+### GET /health
 
-4. Deploy!
+Health check endpoint that returns API status.
+
+## Project Structure
+
+- `functions/` - Lambda functions for the API endpoints
+- `infra/` - Infrastructure code (API Gateway, S3, DynamoDB)
+- `core/` - Shared code and utilities
+
+## Deployment
+
+1. Install dependencies
 
    ```bash
    npm install
+   ```
+
+2. Deploy to AWS
+
+   ```bash
    npx sst deploy
    ```
 
-6. Optionally, enable [_git push to deploy_](https://ion.sst.dev/docs/console/#autodeploy).
-
-## Usage
-
-This template uses [npm Workspaces](https://docs.npmjs.com/cli/v8/using-npm/workspaces). It has 3 packages to start with and you can add more it.
-
-1. `core/`
-
-   This is for any shared code. It's defined as modules. For example, there's the `Example` module.
-
-   ```ts
-   export module Example {
-     export function hello() {
-       return "Hello, world!";
-     }
-   }
-   ```
-
-   That you can use across other packages using.
-
-   ```ts
-   import { Example } from "@aws-monorepo/core/example";
-
-   Example.hello();
-   ```
-
-2. `functions/`
-
-   This is for your Lambda functions and it uses the `core` package as a local dependency.
-
-3. `scripts/`
-
-    This is for any scripts that you can run on your SST app using the `sst shell` CLI and [`tsx`](https://www.npmjs.com/package/tsx). For example, you can run the example script using:
+   For development environment:
 
    ```bash
-   npm run shell src/example.ts
+   npm run deploy-development
    ```
 
-### Infrastructure
+## Infrastructure
 
-The `infra/` directory allows you to logically split the infrastructure of your app into separate files. This can be helpful as your app grows.
+The application uses:
 
-In the template, we have an `api.ts`, and `storage.ts`. These export the created resources. And are imported in the `sst.config.ts`.
+- S3 bucket for storing CSV files
+- DynamoDB table with GSI for date-based queries
+- API Gateway for RESTful endpoints
+- Lambda functions for serverless compute
 
----
+## Development
 
-Join the SST community over on [Discord](https://discord.gg/sst) and follow us on [Twitter](https://twitter.com/SST_dev).
+To run locally:
+
+```bash
+npm run dev
+```
