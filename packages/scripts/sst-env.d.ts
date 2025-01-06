@@ -6,6 +6,10 @@ import "sst"
 export {}
 declare module "sst" {
   export interface Resource {
+    "EmailTopic": {
+      "arn": string
+      "type": "sst.aws.SnsTopic"
+    }
     "ExpenseTrackerBucket": {
       "name": string
       "type": "sst.aws.Bucket"

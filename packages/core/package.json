@@ -5,7 +5,10 @@
     "test": "sst shell vitest"
   },
   "dependencies": {
-    "sst": "*"
+    "sst": "*",
+    "@aws-sdk/client-bedrock-runtime": "^3.0.0",
+    "@aws-sdk/client-ses": "^3.0.0",
+    "@aws-sdk/client-sqs": "^3.0.0"
   },
   "devDependencies": {
     "vitest": "^2.0.3"
